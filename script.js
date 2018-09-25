@@ -4,8 +4,10 @@ var patterns = {
     'email':/^[\w_-]+@[\w_-]+\.\w+$/
 };
 var fade = 900;
+var delay = 5000;
 var buttonText = 'Отправить';
 var buttonClass = 'btn btn-primary';
+var keyAjax = true;
 
 $(window).ready(function () {
     $('body').on('click','button',function(){
@@ -20,15 +22,20 @@ $(window).ready(function () {
     });
 });
 
-
 function formLoad() {
-    $.ajax({
+    if(keyAjax){
+        keyAjax = false;
+        $.ajax({
             url: 'form.html',
             success: function (html) {
-                $('body').append(html);
-                formStart();
+                if($('#modalForm').length === 0 ){
+                    $('body').append(html);
+                    formStart();
+                }
             }
         })
+    }
+
 }
 
 function formStart() {
@@ -36,8 +43,8 @@ function formStart() {
         $('#modalForm').modal('show').on('hidden.bs.modal',function () {
             $(this).remove();
         });
-        $('#formLoad').hide();
-    }, 1000);
+        keyAjax = true;
+    }, delay);
     $('.modal-body').on('focus','input',function(){
         $(this).siblings('.label-placeholder').addClass('label-text');
     }).on('keyup','input',formValidate).on('blur','input',formIsBlur)
@@ -86,6 +93,7 @@ function formAddButton(event) {
 }
 
 function formResultShow(event) {
+    $('#formLoad').hide();
     $('#modalForm').modal('hide');
     $('#result').fadeIn(fade);
     $(event.data.parent).find('input').each(function (i,element) {
