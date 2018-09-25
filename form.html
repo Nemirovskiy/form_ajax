@@ -1,0 +1,48 @@
+<div class="modal fade" id="modalForm" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1>Форма</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="modal-body">
+                <div class="form-group col-8 mx-auto">
+                    <label for="inputName" class="my-0 label-placeholder text-muted">Имя</label>
+                    <input type="text" class="form-control needs-validation"
+                           id="inputName"
+                           tabindex="1"
+                           name="name"
+                           required>
+                    <small class="invalid-feedback">
+                        Имя нужно обязательно ввести.
+                    </small>
+                </div>
+                <div class="form-group col-8 mx-auto">
+                    <label for="inputPhone" class="my-0 label-placeholder text-muted">Телефон</label>
+                    <input type="text" class="form-control"
+                           id="inputPhone"
+                           tabindex="2"
+                           name="phone"
+                           required>
+                    <small class="invalid-feedback">
+                        Телефон нужно обязательно ввести.
+                    </small>
+                </div>
+                <div class="form-group col-8 mx-auto">
+                    <label for="inputEmail" class="my-0 label-placeholder text-muted">E-mail</label>
+                    <input type="email" class="form-control"
+                           id="inputEmail"
+                           tabindex="3"
+                           name="email"
+                           required>
+                    <small class="invalid-feedback">
+                        E-mail нужно обязательно ввести.
+                    </small>
+                </div>
+            </form>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>

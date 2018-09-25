@@ -1,0 +1,15 @@
+.container{
+    height: 100vh;
+}
+
+.label-placeholder {
+    position: relative;
+    top: 30px;
+    left: 13px;
+    transition-duration: 0.5s;
+}
+.label-placeholder.label-text {
+    position: relative;
+    top: -10px;
+    left: 0;
+}
