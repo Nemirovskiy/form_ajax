@@ -10,10 +10,11 @@ var buttonClass = 'btn btn-primary';
 var keyAjax = true;
 
 $(window).ready(function () {
-    $('body').on('click','button',function(){
+    $('body').on('click','button',function(event){
+        console.log(event.target);
         switch($(this).attr('id')){
             case 'formLoad':
-                formLoad();
+                formLoad(event.target);
                 break;
             case 'reset':
                 formClean();
@@ -22,15 +23,17 @@ $(window).ready(function () {
     });
 });
 
-function formLoad() {
+function formLoad(button) {
     if(keyAjax){
+        $('body').addClass('wait');
+        $(button).attr('disabled','disabled');
         keyAjax = false;
         $.ajax({
             url: 'form.html',
             success: function (html) {
                 if($('#modalForm').length === 0 ){
                     $('body').append(html);
-                    formStart();
+                    formStart(button);
                 }
             }
         })
@@ -38,12 +41,14 @@ function formLoad() {
 
 }
 
-function formStart() {
+function formStart(button) {
     setTimeout(function () {
         $('#modalForm').modal('show').on('hidden.bs.modal',function () {
             $(this).remove();
         });
         keyAjax = true;
+        $(button).removeAttr('disabled');
+        $('body').removeClass('wait');
     }, delay);
     $('.modal-body').on('focus','input',function(){
         $(this).siblings('.label-placeholder').addClass('label-text');

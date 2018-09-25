@@ -13,3 +13,6 @@
     top: -10px;
     left: 0;
 }
+.wait{
+    cursor: wait;
+}
